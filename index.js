@@ -51,10 +51,7 @@ var processPage = function() {
     global.console.log("Started!");
     // step 1:  click Quick View to expand contents of all properties
     // casper.capture("screenshots/page" + currentPage);
-    global.console.log("Before evaluating getCompanyData()");
-    casper.capture("screenshots/test");
     var results = this.evaluate(getCompanyData);
-    global.console.log("After evaluating getCompanyData()");
     for (var c=0; c<results.length; c++) {
         fileOutput.writeLine(JSON.stringify(results[c]));
     }
@@ -78,7 +75,6 @@ var processPage = function() {
 }
 
 var terminate = function() {
-    casper.capture("screenhots/test");
     this.echo("Finishing scraping...").exit();
     fileOutput.close();
 }
