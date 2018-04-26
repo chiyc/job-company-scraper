@@ -14,19 +14,14 @@ const columns = {
     company_location: "Company Location"
 };
 
-let contents = fs.readFileSync("output.json").toString().split("\n")
-.forEach(line => {
-    const obj = JSON.parse(line);
-});
-
 // iterate through each output json, remove .amenities array and replace with additional
 // snake-cased properties with a YES/NO desigination for whether or not it exists for that property
 const transformedData = [];
-contents = fs.readFileSync("output.json").toString().split("\n")
+let contents = fs.readFileSync("output.json").toString().split("\n")
 .forEach(line => {
     // for each amenity, add the snake_case property to obj with YES/NO value
     // total_meeting_space sometimes has a newline (\n\) character in it - remove it
-    const obj = JSON.parse(line);
+    const obj = line ? JSON.parse(line) : {};
     transformedData.push(obj);
 });
 
