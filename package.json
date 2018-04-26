@@ -1,0 +1,22 @@
+{
+  "name": "job-company-scraper",
+  "version": "1.0.0",
+  "description": "Obtains a list of companies for a given job title",
+  "main": "index.js",
+  "scripts": {
+    "start": "./node_modules/casperjs/bin/casperjs index.js",
+    "export": "node export.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "scraper",
+    "jobs",
+    "companies"
+  ],
+  "author": "chiyc",
+  "license": "ISC",
+  "dependencies": {
+    "casperjs": "^1.1.4",
+    "csv-stringify": "^3.0.0"
+  }
+}
