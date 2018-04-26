@@ -1,7 +1,7 @@
 "use strict";
 
 const readline = require('readline');
-const fs = require('fs');=
+const fs = require('fs');
 const stringify = require("csv-stringify");
 
 console.log("Beginning export...");
