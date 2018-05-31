@@ -1,8 +1,8 @@
 // inspired by:  http://toddhayton.com/2015/03/20/scraping-with-casperjs/
 // github:  https://github.com/thayton/casperjs-taleo-job-scraper/blob/master/scraper.js
 
-const job = "worker";
-const jobLocation = "Washington";
+const job = "merchandiser";
+const jobLocation = "";
 const searchUrl = "https://www.indeed.com/jobs?q=" + job + "&l=" + jobLocation;
 var data = [];
 var currentPage = 1;
@@ -26,20 +26,20 @@ var getSelectedPage = function() {
 }
 
 var getCompanyData = function() {
-    var jobCards = document.querySelectorAll("div[class*='clickcard']");
+    var jobCards = document.querySelectorAll("div.clickcard");
     var data = [];
     console.log("Found " + jobCards.length + " entries on page");
     for (var i=0; i<jobCards.length; i++) {
         var row = jobCards[i];
         var info = {};
 
-        var jobTitle = row.querySelector("a[data-tn-element='jobTitle']");
+        var jobTitle = row.querySelector("div.clickcard a[data-tn-element='jobTitle']");
         info["job_title"] = jobTitle.textContent;
 
-        var companyName = row.querySelector("span[class='company']");
+        var companyName = row.querySelector("div.clickcard span[class='company']");
         info["company_name"] = companyName.textContent.replace(/\n    /g, "");
 
-        var companyLocation = row.querySelector("span[class='location']");
+        var companyLocation = row.querySelector("div.clickcard span[class='location']");
         info["company_location"] = companyLocation.textContent;
         data.push(info);
     }
@@ -51,7 +51,7 @@ var processPage = function() {
     global.console.log("Started!");
     // step 1:  click Quick View to expand contents of all properties
     // casper.capture("screenshots/page" + currentPage);
-    var results = this.evaluate(getCompanyData);
+    var results = this.evaluate(getCompanyData) || [];
     for (var c=0; c<results.length; c++) {
         fileOutput.writeLine(JSON.stringify(results[c]));
     }
