@@ -6,6 +6,7 @@
   "scripts": {
     "start": "./node_modules/casperjs/bin/casperjs index.js",
     "export": "node export.js",
+    "all": "./node_modules/casperjs/bin/casperjs index.js && node export.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
