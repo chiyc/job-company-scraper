@@ -2,7 +2,7 @@
 // github:  https://github.com/thayton/casperjs-taleo-job-scraper/blob/master/scraper.js
 
 const job = "merchandiser";
-const jobLocation = "";
+const jobLocation = "San Jose";
 const searchUrl = "https://www.indeed.com/jobs?q=" + job + "&l=" + jobLocation;
 var data = [];
 var currentPage = 1;
@@ -36,10 +36,12 @@ var getCompanyData = function() {
         var jobTitle = row.querySelector("div.clickcard a[data-tn-element='jobTitle']");
         info["job_title"] = jobTitle.textContent;
 
-        var companyName = row.querySelector("div.clickcard span[class='company']");
+        var companyNameA = row.querySelector("div.clickcard .company");
+        var companyNameB = row.querySelector("div.clickcard .company a");
+        var companyName = companyNameA || companyNameB;
         info["company_name"] = companyName.textContent.replace(/\n    /g, "");
 
-        var companyLocation = row.querySelector("div.clickcard span[class='location']");
+        var companyLocation = row.querySelector("div.clickcard .location");
         info["company_location"] = companyLocation.textContent;
         data.push(info);
     }
