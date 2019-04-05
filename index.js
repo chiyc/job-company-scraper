@@ -34,12 +34,12 @@ var getCompanyData = function() {
         var info = {};
 
         var jobTitle = row.querySelector("div.clickcard a[data-tn-element='jobTitle']");
-        info["job_title"] = jobTitle.textContent;
+        info["job_title"] = jobTitle.textContent.replace(/^\s*/, "");
 
         var companyNameA = row.querySelector("div.clickcard .company");
         var companyNameB = row.querySelector("div.clickcard .company a");
         var companyName = companyNameA || companyNameB;
-        info["company_name"] = companyName.textContent.replace(/\n    /g, "");
+        info["company_name"] = companyName.textContent.replace(/^\s*/, "");
 
         var companyLocation = row.querySelector("div.clickcard .location");
         info["company_location"] = companyLocation.textContent;
